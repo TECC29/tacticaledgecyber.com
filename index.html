@@ -154,6 +154,8 @@ section{position:relative;z-index:1;padding:120px 0;}
 .plist li{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:var(--dm);}
 .plist li::before{content:'✓';color:var(--cy);font-weight:700;flex-shrink:0;margin-top:1px;}
 .pcta{display:block;text-align:center;border:1px solid var(--cd);color:var(--cy);padding:10px 20px;border-radius:9px;font-size:.84rem;font-weight:600;transition:all .2s;}
+#apps .si a{color:var(--cy);text-decoration:underline}
+.price{font-family:'Space Grotesk',sans-serif;font-size:2.3rem;font-weight:700;color:var(--tx);margin:2px 0 16px;line-height:1}.price small{font-size:.85rem;color:var(--dm);font-weight:500;font-family:'Inter',sans-serif}
 .pcta:hover,.pkg.feat .pcta{background:var(--cy);color:#0B1220;border-color:var(--cy);}
 /* WHY */
 .wg{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
@@ -338,6 +340,7 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
 <a href="#how" data-id="how"><span class="sl" data-en="How it works" data-pt="Como funciona"></span><span class="sd"></span></a>
 <a href="#services" data-id="services"><span class="sl" data-en="Services" data-pt="Serviços"></span><span class="sd"></span></a>
 <a href="#case" data-id="case"><span class="sl" data-en="Case" data-pt="Caso"></span><span class="sd"></span></a>
+<a href="#apps" data-id="apps"><span class="sl" data-en="Apps" data-pt="Apps"></span><span class="sd"></span></a>
 <a href="#about" data-id="about"><span class="sl" data-en="About" data-pt="Sobre"></span><span class="sd"></span></a>
 <a href="#contact" data-id="contact"><span class="sl" data-en="Contact" data-pt="Contato"></span><span class="sd"></span></a>
 </nav>
@@ -350,6 +353,7 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
   </div>
   <div class="nlinks">
     <a href="#services" data-en="Services" data-pt="Serviços">Services</a>
+    <a href="#apps" data-en="Apps" data-pt="Apps">Apps</a>
     <a href="#case" data-en="Case Study" data-pt="Caso Real">Case Study</a>
     <a href="#about" data-en="About" data-pt="Sobre">About</a>
     <a href="#contact" data-en="Contact" data-pt="Contato">Contact</a>
@@ -553,12 +557,12 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
   <p class="si" data-en="A client in the gutter installation industry was losing material, time, and visibility over their crew. Twenty Nine Cyber delivered an app that solved it in practice." data-pt="Um cliente do setor de instalação de calhas perdia material, tempo e visibilidade sobre sua equipe. A Twenty Nine Cyber entregou um app que resolveu isso na prática.">A client in the gutter installation industry was losing material, time, and visibility over their crew. Twenty Nine Cyber delivered an app that solved it in practice.</p>
   <div class="glass cp">
     <div class="ch">
-      <span class="ct" data-en="Project · GutterKrew" data-pt="Projeto · GutterKrew">Project · GutterKrew</span>
+      <span class="ct" data-en="Project · 29Cyber CrewTrack" data-pt="Projeto · 29Cyber CrewTrack">Project · 29Cyber CrewTrack</span>
       <span class="cs" data-en="Live in production" data-pt="Em produção">Live in production</span>
     </div>
     <div class="cb">
       <div>
-        <h3>GutterKrew</h3>
+        <h3>29Cyber CrewTrack</h3>
         <p data-en="A material and team control app, built under the Twenty Nine Cyber brand and used every single day by the client and their crew in the field." data-pt="Um app de controle de material e equipe, construído sob a marca Twenty Nine Cyber e usado todos os dias pelo cliente e sua equipe em campo.">A material and team control app, built under the Twenty Nine Cyber brand and used every single day by the client and their crew in the field.</p>
         <p data-en="The result: less material lost, a more organized crew, and the owner with complete visibility of the operation — from anywhere, at any time." data-pt="O resultado: menos material perdido, equipe mais organizada e o dono com visibilidade total da operação — de qualquer lugar, a qualquer hora.">The result: less material lost, a more organized crew, and the owner with complete visibility of the operation — from anywhere, at any time.</p>
       </div>
@@ -573,9 +577,59 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
 </div>
 </section>
 
+<section id="apps">
+<div class="wrap rev">
+  <div class="sl"><span class="sn">06</span><span data-en="Field apps" data-pt="Apps de campo">Field apps</span></div>
+  <h2 class="st" data-en="CrewTrack + FieldProof: control the material, prove the job" data-pt="CrewTrack + FieldProof: controle o material, prove o serviço">CrewTrack + FieldProof: control the material, prove the job</h2>
+  <p class="si" data-en="Two apps in one subscription, built for installation contractors. Your crew uses them on the phone; you see everything from anywhere." data-pt="Dois apps em uma assinatura, feitos para empresas de instalação. A equipe usa no celular; você acompanha tudo de qualquer lugar.">Two apps in one subscription, built for installation contractors. Your crew uses them on the phone; you see everything from anywhere.</p>
+  <div class="fg" style="margin-top:28px">
+    <div class="glass fi"><span class="fic">🚚</span><h4 data-en="Morning load and return count per truck" data-pt="Carga da manhã e contagem no retorno por caminhão">Morning load and return count per truck</h4></div>
+    <div class="glass fi"><span class="fic">✅</span><h4 data-en="Manager approvals stamped with name and time" data-pt="Aprovações da gerência com nome e horário">Manager approvals stamped with name and time</h4></div>
+    <div class="glass fi"><span class="fic">📐</span><h4 data-en="Photo plans and building sketches" data-pt="Planos com foto e croqui do prédio">Photo plans and building sketches</h4></div>
+    <div class="glass fi"><span class="fic">✍️</span><h4 data-en="Signed, tamper-evident PDF records" data-pt="Registros em PDF assinados e à prova de adulteração">Signed, tamper-evident PDF records</h4></div>
+  </div>
+  <div class="pkg-g">
+    <div class="glass pkg">
+      <div class="pn" data-en="Freelancer" data-pt="Autônomo">Freelancer</div>
+      <h3>Solo</h3>
+      <div class="price">$39<small data-en=" / month" data-pt=" / mês"> / month</small></div>
+      <ul class="plist">
+        <li data-en="Up to 2 people" data-pt="Até 2 pessoas">Up to 2 people</li>
+        <li data-en="CrewTrack + FieldProof" data-pt="CrewTrack + FieldProof">CrewTrack + FieldProof</li>
+        <li data-en="Signed PDF records" data-pt="Registros em PDF assinados">Signed PDF records</li>
+      </ul>
+      <a href="https://crewtrack.29cyber.com/" target="_blank" rel="noopener" class="pcta" data-en="Start 21-day free trial" data-pt="Teste grátis por 21 dias">Start 21-day free trial</a>
+    </div>
+    <div class="glass pkg feat">
+      <div class="pn" data-en="Most teams" data-pt="Mais escolhido">Most teams</div>
+      <h3>Crew</h3>
+      <div class="price">$129<small data-en=" / month" data-pt=" / mês"> / month</small></div>
+      <ul class="plist">
+        <li data-en="Up to 10 people" data-pt="Até 10 pessoas">Up to 10 people</li>
+        <li data-en="Everything in Solo" data-pt="Tudo do Solo">Everything in Solo</li>
+        <li data-en="Trucks, stock, fuel and truck problems" data-pt="Caminhões, estoque, combustível e problemas do caminhão">Trucks, stock, fuel and truck problems</li>
+      </ul>
+      <a href="https://crewtrack.29cyber.com/" target="_blank" rel="noopener" class="pcta" data-en="Start 21-day free trial" data-pt="Teste grátis por 21 dias">Start 21-day free trial</a>
+    </div>
+    <div class="glass pkg">
+      <div class="pn" data-en="Growing company" data-pt="Empresa em crescimento">Growing company</div>
+      <h3>Company</h3>
+      <div class="price">$249<small data-en=" / month" data-pt=" / mês"> / month</small></div>
+      <ul class="plist">
+        <li data-en="Up to 25 people" data-pt="Até 25 pessoas">Up to 25 people</li>
+        <li data-en="Everything in Crew" data-pt="Tudo do Crew">Everything in Crew</li>
+        <li data-en="Priority support" data-pt="Suporte prioritário">Priority support</li>
+      </ul>
+      <a href="https://crewtrack.29cyber.com/" target="_blank" rel="noopener" class="pcta" data-en="Start 21-day free trial" data-pt="Teste grátis por 21 dias">Start 21-day free trial</a>
+    </div>
+  </div>
+  <p class="si" style="text-align:center;max-width:100%;margin:22px 0 0;font-size:.85rem" data-en="Prices in USD, billed monthly through Stripe. No card needed for the trial. Cancel anytime. More than 25 people? <a href='#contact'>Talk to us</a>. See our <a href='/terms.html'>Terms</a>, <a href='/refund.html'>Refund Policy</a> and <a href='/privacy.html'>Privacy Policy</a>." data-pt="Preços em dólar, cobrança mensal pelo Stripe. Sem cartão para testar. Cancele quando quiser. Mais de 25 pessoas? <a href='#contact'>Fale conosco</a>. Veja os <a href='/terms.html'>Termos</a>, a <a href='/refund.html'>Política de Reembolso</a> e a <a href='/privacy.html'>Política de Privacidade</a>.">Prices in USD, billed monthly through Stripe. No card needed for the trial. Cancel anytime. More than 25 people? <a href="#contact">Talk to us</a>. See our <a href="/terms.html">Terms</a>, <a href="/refund.html">Refund Policy</a> and <a href="/privacy.html">Privacy Policy</a>.</p>
+</div>
+</section>
+
 <section id="about">
 <div class="wrap rev">
-  <div class="sl"><span class="sn">06</span><span data-en="Who's behind Twenty Nine Cyber" data-pt="Quem está por trás da Twenty Nine Cyber">Who's behind Twenty Nine Cyber</span></div>
+  <div class="sl"><span class="sn">07</span><span data-en="Who's behind Twenty Nine Cyber" data-pt="Quem está por trás da Twenty Nine Cyber">Who's behind Twenty Nine Cyber</span></div>
   <h2 class="st" data-en="Operational discipline applied to technology" data-pt="Disciplina operacional aplicada à tecnologia">Operational discipline applied to technology</h2>
   <div class="ag">
     <div class="glass ac">
@@ -605,7 +659,7 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
 
 <section id="faq">
 <div class="wrap rev">
-  <div class="sl"><span class="sn">07</span><span data-en="Common questions" data-pt="Perguntas comuns">Common questions</span></div>
+  <div class="sl"><span class="sn">08</span><span data-en="Common questions" data-pt="Perguntas comuns">Common questions</span></div>
   <h2 class="st" data-en="You asked, we answer" data-pt="Você perguntou, nós respondemos">You asked, we answer</h2>
   <div class="faq" id="faqContainer"></div>
 </div>
@@ -684,7 +738,10 @@ body.tilt .hg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transiti
   <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
     <a href="https://www.instagram.com/29_cyber/" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--cy);display:inline-flex;align-items:center;gap:7px;"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>@29_cyber</a>
   <a href="mailto:fabio@29cyber.com" style="color:var(--cy)">fabio@29cyber.com</a>
-    <span>© 2026 Twenty Nine Cyber</span>
+    <a href="/terms.html" style="color:var(--dm)" data-en="Terms" data-pt="Termos">Terms</a>
+    <a href="/privacy.html" style="color:var(--dm)" data-en="Privacy" data-pt="Privacidade">Privacy</a>
+    <a href="/refund.html" style="color:var(--dm)" data-en="Refunds" data-pt="Reembolsos">Refunds</a>
+    <span>© 2026 Twenty Nine Cyber LLC · Orlando, FL</span>
   </div>
 </div>
 </footer>
