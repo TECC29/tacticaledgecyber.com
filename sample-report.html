@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Incident Report · Twenty Nine Cyber</title>
+<meta name="description" content="Redacted sample of a Twenty Nine Cyber incident response report: an email account takeover, investigated, contained and documented.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="theme-color" content="#101C33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1220;--ln:rgba(255,255,255,.10);--tx:#edf1f7;--dm:#8d99ad;--cy:#D9A32B;--rd:#e5675f;--or:#e59b4f;--gr:#4ade80;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;line-height:1.7}
+a{color:var(--cy)}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--ln);padding:22px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--tx);text-decoration:none}
+.brand span{color:var(--cy)}
+.lang a{font-family:'JetBrains Mono',monospace;font-size:.8rem;margin-left:14px}
+main{padding:48px 0 72px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.2}
+h1{font-size:2rem;margin-bottom:6px}
+h2{font-size:1.15rem;margin:38px 0 12px;color:var(--cy)}
+h3{font-size:1rem;margin:22px 0 6px}
+p,li{color:#d5dbe6;margin-bottom:10px}
+ul,ol{padding-left:22px}
+.meta{color:var(--dm);font-size:.9rem;margin-bottom:24px}
+.note{border:1px solid var(--ln);border-left:3px solid var(--cy);border-radius:10px;padding:14px 16px;margin:18px 0;background:rgba(255,255,255,.03)}
+.tw{overflow-x:auto;margin:12px 0 18px;border:1px solid var(--ln);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--ln);color:#d5dbe6}
+th{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--dm);background:rgba(255,255,255,.03)}
+tr:last-child td{border-bottom:0}
+code{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.sv{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.c{color:var(--rd);border:1px solid var(--rd)}.h{color:var(--or);border:1px solid var(--or)}.m{color:var(--cy);border:1px solid var(--cy)}.ok{color:var(--gr);border:1px solid var(--gr)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0}
+.stat{border:1px solid var(--ln);border-radius:10px;padding:12px 14px;background:rgba(255,255,255,.03)}
+.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--cy);line-height:1.2}
+.stat span{font-size:.85rem;color:var(--dm)}
+hr{border:0;border-top:1px solid var(--ln);margin:64px 0 40px}
+.cta{margin-top:30px}
+footer{border-top:1px solid var(--ln);padding:24px 0;color:var(--dm);font-size:.85rem}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/">Twenty Nine <span>Cyber</span></a>
+  <nav class="lang" aria-label="Language"><a href="#en">English</a><a href="#pt">Português</a></nav>
+</div></header>
+
+<main class="wrap">
+
+<section id="en" lang="en">
+<h1>Incident Response Report (redacted sample)</h1>
+<p class="meta">Email account takeover · Personal account · Remote engagement, authorized by the client · Twenty Nine Cyber LLC</p>
+
+<div class="note"><strong>This is a redacted sample, published with the client's permission.</strong> Names, dates, places, financial institutions, addresses, network indicators and evidence files were removed. Times are shown relative to the first unauthorized sign-in ("Hour 0"). The client's own report keeps all of them.</div>
+
+<h2>1. Executive summary</h2>
+<p>An attacker who already had the password signed in to the client's personal email and created a hidden rule that sent a copy of every incoming message to an outside address. The rule kept working for about three days and survived two password changes, because email rules are not removed when the password changes.</p>
+<p>Through that copy, the attacker received verification codes, purchase alerts and bank messages. We proved that a bank notice about a charge issued in the client's name was forwarded to the attacker. The attacker also changed the junk-mail settings to hide the trail.</p>
+<p>On the day of the engagement we removed the rule, shut the extra access the attacker had opened, turned on two-step verification and gave the client a prioritized plan to protect their identity and finances.</p>
+
+<div class="stats">
+  <div class="stat"><b>9</b><span>countries in under 24 hours (sign-ins and attempts)</span></div>
+  <div class="stat"><b>2</b><span>password resets survived by the rule</span></div>
+  <div class="stat"><b>4</b><span>provider blocks, then back in 2 hours later</span></div>
+  <div class="stat"><b>Same day</b><span>leak stopped</span></div>
+</div>
+
+<h2>2. Scope, method and limits</h2>
+<p><strong>Scope:</strong> the email account (mailbox, mail settings, sign-in activity, recovery methods, app activity and connected cloud storage). Out of scope: forensic analysis of the client's devices and their accounts at other companies; those received recommendations instead.</p>
+<p><strong>Method:</strong></p>
+<ul>
+  <li>Evidence captured before any change, each file fingerprinted with SHA-256 so it can be shown unaltered later.</li>
+  <li>Technical headers of the delivery-failure notices analyzed.</li>
+  <li>Sign-in log, headers and received messages correlated into one timeline (UTC).</li>
+  <li>Containment, then hardening.</li>
+</ul>
+<p><strong>Limits we state openly:</strong> personal email accounts do not keep a full audit log (rule creation is not recorded), and how the attacker first got the password cannot be proven from the account's data. The report separates what is proven from what is probable.</p>
+
+<h2>3. Timeline</h2>
+<div class="tw"><table>
+<tr><th>When</th><th>Event</th><th>Source</th></tr>
+<tr><td>Hour 0</td><td>First unauthorized sign-in, successful on the first try (the password was already known)</td><td>Sign-in log</td></tr>
+<tr><td>Hours 0–15</td><td>Sign-ins and "unusual activity" from several countries: an "impossible travel" pattern, consistent with proxies or VPNs</td><td>Sign-in log</td></tr>
+<tr><td>Hour 15</td><td>A bank notice about a charge issued in the client's name arrives and is forwarded 4 seconds later by the mailbox's own rule engine</td><td>Message headers</td></tr>
+<tr><td>Hours 17–19</td><td>The provider blocks 4 sign-ins and flags the account as compromised</td><td>Sign-in log</td></tr>
+<tr><td>Hour 21</td><td>Attacker signs in successfully again, including from a cloud data center</td><td>Sign-in log</td></tr>
+<tr><td>Hour 21 and Day 4</td><td>Client resets the password twice; the rule keeps forwarding</td><td>Sign-in log, mailbox</td></tr>
+<tr><td>Days 2–4</td><td>Fraud signals reach the client: new-device alert at a marketplace, notice of a new card being shipped, a credit score change, targeted phishing</td><td>Mailbox</td></tr>
+<tr><td>Day 4</td><td>Engagement: rule found active, now pointing to a second address; removed. Extra access closed. Two-step verification on</td><td>Analyst</td></tr>
+</table></div>
+
+<h2>4. Key findings</h2>
+<div class="tw"><table>
+<tr><th>Severity</th><th>Finding</th></tr>
+<tr><td><span class="sv c">Critical</span></td><td>Active forwarding rule: "if a message arrives, forward it to an outside address and stop processing other rules". Nearly every message in the inbox showed the forwarded icon.</td></tr>
+<tr><td><span class="sv c">Critical</span></td><td>Proof it was automatic: the headers carry <code>generated-message-source: Mailbox Rules Agent</code>, <code>Inbox-Rules-Loop</code> and <code>auto-submitted: auto-generated</code>, and the provider's DKIM signature shows they left the account itself.</td></tr>
+<tr><td><span class="sv c">Critical</span></td><td>Sign-ins and attempts from 9 countries in under 24 hours; the first one succeeded with no failed attempts before it.</td></tr>
+<tr><td><span class="sv h">High</span></td><td>The attacker got back in after the provider blocked the account as compromised, once from a cloud server address.</td></tr>
+<tr><td><span class="sv h">High</span></td><td>Sender lists manipulated to hide the trail: a financial company's real addresses and the delivery-failure notices were blocked; look-alike domains imitating that company were marked as trusted, one using an accented letter that looks identical at a glance. Blocked mail is deleted without reaching the trash.</td></tr>
+<tr><td><span class="sv h">High</span></td><td>POP download turned on (off by default), allowing a copy of the whole mailbox.</td></tr>
+<tr><td><span class="sv h">High</span></td><td>A draft holding the client's full personal and ID data sat in the mailbox, enough to attempt accounts or credit in their name.</td></tr>
+<tr><td><span class="sv m">Medium</span></td><td>Targeted phishing using real government programs as bait, from the same sender pattern.</td></tr>
+<tr><td><span class="sv ok">Checked</span></td><td>Recovery methods legitimate and unchanged; no global forwarding, no sweep rules, no file sharing or deletions in cloud storage.</td></tr>
+</table></div>
+
+<h2>5. Proven, probable, hypothesis</h2>
+<div class="tw"><table>
+<tr><th>Statement</th><th>Level</th></tr>
+<tr><td>Unauthorized access starting at Hour 0</td><td>Proven</td></tr>
+<tr><td>A rule forwarded all incoming mail to the attacker</td><td>Proven</td></tr>
+<tr><td>A bank notice about a charge in the client's name reached the attacker</td><td>Proven</td></tr>
+<tr><td>Real senders were blocked and impostors trusted</td><td>Proven</td></tr>
+<tr><td>The rule survived the password resets</td><td>Proven</td></tr>
+<tr><td>The attacker turned on POP</td><td>Probable</td></tr>
+<tr><td>The password was obtained by phishing, a reused leaked password or info-stealing malware</td><td>Hypothesis (no data in the account tells them apart)</td></tr>
+<tr><td>The goal was financial and identity fraud</td><td>Strong hypothesis</td></tr>
+</table></div>
+
+<h2>6. Containment and hardening</h2>
+<div class="tw"><table>
+<tr><th>Item</th><th>Before</th><th>After</th></tr>
+<tr><td>Forwarding rule</td><td>Active, forwarding everything</td><td>Removed</td></tr>
+<tr><td>POP / IMAP access</td><td>On</td><td>Off</td></tr>
+<tr><td>Blocked and trusted senders</td><td>Manipulated</td><td>Cleanup guided with the client</td></tr>
+<tr><td>Two-step verification</td><td>Off</td><td>On, with an authenticator app</td></tr>
+<tr><td>Recovery methods</td><td>Not checked</td><td>Checked: all legitimate</td></tr>
+<tr><td>App passwords</td><td>—</td><td>None created</td></tr>
+<tr><td>Cloud storage and lists</td><td>Not checked</td><td>Checked: no damage found</td></tr>
+</table></div>
+
+<h2>7. Recovery plan delivered to the client</h2>
+<p>The biggest remaining risk was no longer the mailbox but the use of the client's identity outside it. The plan was ordered by urgency:</p>
+<ol>
+  <li><strong>Today:</strong> check the national credit registry for accounts or loans not recognized; report the charge and any card not requested to the bank through its app or official number (never through email links); turn on identity-use alerts at the credit bureau; set a new, unique password, sign out everywhere and generate a new recovery code.</li>
+  <li><strong>This week:</strong> secure the marketplace account and dispute the purchase; contact the financial company about a possible account opened in the client's name; file a police report with this report attached; review the phone's cloud account; ask the person who is the account's recovery contact to turn on two-step verification; change any reused passwords.</li>
+  <li><strong>Devices and habits:</strong> check the phone for management profiles and updates; scan any computer offline before typing passwords on it; never approve a sign-in request you did not start; do not keep full ID data in email drafts.</li>
+</ol>
+
+<h2>8. What the full report also includes</h2>
+<ul>
+  <li>Indicators of compromise (addresses, domains, IPs) ready to report to the email provider, banks and police.</li>
+  <li>The header transcripts and the list of evidence files with their SHA-256 fingerprints.</li>
+  <li>Open items that could change a conclusion, each with who must confirm it.</li>
+</ul>
+
+<div class="note"><strong>Why this matters for a business:</strong> a hidden forwarding rule is how most business email fraud starts. Attackers read your invoices, then send your customers new payment details. Changing the password does not remove it. <a href="/#contact">Talk to us</a> if you want your email checked.</div>
+<p class="cta"><a href="/#case">← Back to our work</a></p>
+</section>
+
+<hr>
+
+<section id="pt" lang="pt-BR">
+<h1>Relatório de Resposta a Incidente (amostra anonimizada)</h1>
+<p class="meta">Invasão de conta de e-mail · Conta pessoal · Atendimento remoto, autorizado pelo cliente · Twenty Nine Cyber LLC</p>
+
+<div class="note"><strong>Esta é uma amostra anonimizada, publicada com autorização do cliente.</strong> Nomes, datas, lugares, instituições financeiras, endereços, indicadores de rede e arquivos de evidência foram removidos. Os horários aparecem em relação à primeira entrada não autorizada ("Hora 0"). O relatório entregue ao cliente mantém tudo isso.</div>
+
+<h2>1. Sumário executivo</h2>
+<p>Um invasor que já tinha a senha entrou no e-mail pessoal do cliente e criou uma regra oculta que enviava uma cópia de toda mensagem recebida para um endereço externo. A regra funcionou por cerca de três dias e sobreviveu a duas trocas de senha, porque regras de e-mail não são apagadas quando a senha muda.</p>
+<p>Por essa cópia, o invasor recebeu códigos de verificação, avisos de compra e mensagens de banco. Provamos que um aviso de banco sobre uma cobrança emitida no nome do cliente foi encaminhado ao invasor. O invasor também alterou as configurações de lixo eletrônico para esconder os rastros.</p>
+<p>No dia do atendimento removemos a regra, fechamos os acessos extras abertos pelo invasor, ativamos a verificação em duas etapas e entregamos ao cliente um plano por prioridade para proteger sua identidade e suas finanças.</p>
+
+<div class="stats">
+  <div class="stat"><b>9</b><span>países em menos de 24 horas (entradas e tentativas)</span></div>
+  <div class="stat"><b>2</b><span>trocas de senha que a regra sobreviveu</span></div>
+  <div class="stat"><b>4</b><span>bloqueios do provedor, e nova entrada 2 horas depois</span></div>
+  <div class="stat"><b>Mesmo dia</b><span>vazamento contido</span></div>
+</div>
+
+<h2>2. Escopo, método e limites</h2>
+<p><strong>Escopo:</strong> a conta de e-mail (caixa, configurações, atividade de entrada, métodos de recuperação, atividade de aplicativos e armazenamento em nuvem ligado à conta). Fora do escopo: perícia nos aparelhos do cliente e nas contas dele em outras empresas; para esses itens houve recomendações.</p>
+<p><strong>Método:</strong></p>
+<ul>
+  <li>Evidências capturadas antes de qualquer alteração, cada arquivo com impressão digital SHA-256 para provar depois que não foi alterado.</li>
+  <li>Análise dos cabeçalhos técnicos dos avisos de falha de entrega.</li>
+  <li>Log de entradas, cabeçalhos e mensagens recebidas cruzados numa única linha do tempo (UTC).</li>
+  <li>Contenção, depois reforço da conta.</li>
+</ul>
+<p><strong>Limites declarados:</strong> contas de e-mail pessoais não guardam log de auditoria completo (a criação de regras não é registrada), e como o invasor obteve a senha não pode ser provado com os dados da conta. O relatório separa o que está provado do que é provável.</p>
+
+<h2>3. Linha do tempo</h2>
+<div class="tw"><table>
+<tr><th>Quando</th><th>Evento</th><th>Fonte</th></tr>
+<tr><td>Hora 0</td><td>Primeira entrada não autorizada, bem-sucedida na primeira tentativa (a senha já era conhecida)</td><td>Log de entradas</td></tr>
+<tr><td>Horas 0–15</td><td>Entradas e "atividade incomum" de vários países: padrão de "viagem impossível", compatível com proxies ou VPNs</td><td>Log de entradas</td></tr>
+<tr><td>Hora 15</td><td>Chega um aviso de banco sobre cobrança emitida no nome do cliente, encaminhado 4 segundos depois pelo próprio mecanismo de regras da caixa</td><td>Cabeçalhos</td></tr>
+<tr><td>Horas 17–19</td><td>O provedor bloqueia 4 entradas e marca a conta como comprometida</td><td>Log de entradas</td></tr>
+<tr><td>Hora 21</td><td>O invasor entra de novo, inclusive a partir de um data center em nuvem</td><td>Log de entradas</td></tr>
+<tr><td>Hora 21 e Dia 4</td><td>O cliente troca a senha duas vezes; a regra continua encaminhando</td><td>Log de entradas, caixa</td></tr>
+<tr><td>Dias 2–4</td><td>Sinais de fraude chegam ao cliente: alerta de novo aparelho num marketplace, aviso de um cartão novo a caminho, mudança no score de crédito, phishing direcionado</td><td>Caixa</td></tr>
+<tr><td>Dia 4</td><td>Atendimento: regra encontrada ativa, já apontando para um segundo endereço; removida. Acessos extras fechados. Verificação em duas etapas ativada</td><td>Analista</td></tr>
+</table></div>
+
+<h2>4. Principais achados</h2>
+<div class="tw"><table>
+<tr><th>Gravidade</th><th>Achado</th></tr>
+<tr><td><span class="sv c">Crítico</span></td><td>Regra de encaminhamento ativa: "se chegar uma mensagem, encaminhar para um endereço externo e parar de processar outras regras". Quase toda mensagem da caixa mostrava o ícone de encaminhada.</td></tr>
+<tr><td><span class="sv c">Crítico</span></td><td>Prova de que era automático: os cabeçalhos trazem <code>generated-message-source: Mailbox Rules Agent</code>, <code>Inbox-Rules-Loop</code> e <code>auto-submitted: auto-generated</code>, e a assinatura DKIM do provedor mostra que as mensagens saíram da própria conta.</td></tr>
+<tr><td><span class="sv c">Crítico</span></td><td>Entradas e tentativas de 9 países em menos de 24 horas; a primeira deu certo sem nenhuma falha antes.</td></tr>
+<tr><td><span class="sv h">Alto</span></td><td>O invasor voltou a entrar depois que o provedor bloqueou a conta como comprometida, uma vez a partir de um servidor em nuvem.</td></tr>
+<tr><td><span class="sv h">Alto</span></td><td>Listas de remetentes manipuladas para esconder rastros: os endereços reais de uma empresa financeira e os avisos de falha de entrega foram bloqueados; domínios que imitam essa empresa foram marcados como confiáveis, um deles com uma letra acentuada que parece idêntica à primeira vista. E-mail bloqueado é apagado sem passar pela lixeira.</td></tr>
+<tr><td><span class="sv h">Alto</span></td><td>Acesso POP ligado (vem desligado por padrão), permitindo baixar a caixa inteira.</td></tr>
+<tr><td><span class="sv h">Alto</span></td><td>Um rascunho com os dados pessoais e de documento completos do cliente estava na caixa, o suficiente para tentar abrir contas ou pedir crédito no nome dele.</td></tr>
+<tr><td><span class="sv m">Médio</span></td><td>Phishing direcionado usando programas reais do governo como isca, com o mesmo padrão de remetente.</td></tr>
+<tr><td><span class="sv ok">Verificado</span></td><td>Métodos de recuperação legítimos e sem alteração; sem encaminhamento global, sem regras de limpeza, sem compartilhamento ou exclusão de arquivos na nuvem.</td></tr>
+</table></div>
+
+<h2>5. Provado, provável, hipótese</h2>
+<div class="tw"><table>
+<tr><th>Afirmação</th><th>Nível</th></tr>
+<tr><td>Acesso não autorizado a partir da Hora 0</td><td>Provado</td></tr>
+<tr><td>Uma regra encaminhava todo e-mail recebido ao invasor</td><td>Provado</td></tr>
+<tr><td>Um aviso de banco sobre cobrança no nome do cliente chegou ao invasor</td><td>Provado</td></tr>
+<tr><td>Remetentes reais foram bloqueados e impostores liberados</td><td>Provado</td></tr>
+<tr><td>A regra sobreviveu às trocas de senha</td><td>Provado</td></tr>
+<tr><td>O invasor ligou o POP</td><td>Provável</td></tr>
+<tr><td>A senha foi obtida por phishing, senha reutilizada vazada ou malware ladrão de senhas</td><td>Hipótese (nenhum dado da conta distingue entre elas)</td></tr>
+<tr><td>O objetivo era fraude financeira e de identidade</td><td>Hipótese forte</td></tr>
+</table></div>
+
+<h2>6. Contenção e reforço</h2>
+<div class="tw"><table>
+<tr><th>Item</th><th>Antes</th><th>Depois</th></tr>
+<tr><td>Regra de encaminhamento</td><td>Ativa, encaminhando tudo</td><td>Removida</td></tr>
+<tr><td>Acesso POP / IMAP</td><td>Ligado</td><td>Desligado</td></tr>
+<tr><td>Remetentes bloqueados e confiáveis</td><td>Manipulados</td><td>Limpeza orientada com o cliente</td></tr>
+<tr><td>Verificação em duas etapas</td><td>Desligada</td><td>Ligada, com app autenticador</td></tr>
+<tr><td>Métodos de recuperação</td><td>Não verificados</td><td>Verificados: todos legítimos</td></tr>
+<tr><td>Senhas de aplicativo</td><td>—</td><td>Nenhuma criada</td></tr>
+<tr><td>Nuvem e listas</td><td>Não verificadas</td><td>Verificadas: sem dano</td></tr>
+</table></div>
+
+<h2>7. Plano de recuperação entregue ao cliente</h2>
+<p>O maior risco restante já não era a caixa de e-mail, e sim o uso da identidade do cliente fora dela. O plano foi ordenado por urgência:</p>
+<ol>
+  <li><strong>Hoje:</strong> consultar o registro nacional de crédito em busca de contas ou empréstimos desconhecidos; informar ao banco a cobrança e qualquer cartão não pedido pelo app ou número oficial (nunca por links de e-mail); ativar alertas de uso do documento no birô de crédito; criar senha nova e única, sair de todos os lugares e gerar novo código de recuperação.</li>
+  <li><strong>Nesta semana:</strong> proteger a conta do marketplace e contestar a compra; avisar a empresa financeira sobre possível conta aberta no nome do cliente; registrar boletim de ocorrência com este relatório anexo; revisar a conta de nuvem do celular; pedir ao contato de recuperação da conta que ative a verificação em duas etapas; trocar senhas reutilizadas.</li>
+  <li><strong>Aparelhos e hábitos:</strong> conferir perfis de gerenciamento e atualizações no celular; verificar qualquer computador offline antes de digitar senhas nele; nunca aprovar uma entrada que você não iniciou; não guardar dados completos de documentos em rascunhos de e-mail.</li>
+</ol>
+
+<h2>8. O que o relatório completo também traz</h2>
+<ul>
+  <li>Indicadores de comprometimento (endereços, domínios, IPs) prontos para denúncia ao provedor de e-mail, aos bancos e à polícia.</li>
+  <li>A transcrição dos cabeçalhos e a lista de arquivos de evidência com as impressões digitais SHA-256.</li>
+  <li>Pendências que podem mudar uma conclusão, cada uma com quem deve confirmá-la.</li>
+</ul>
+
+<div class="note"><strong>Por que isso importa para uma empresa:</strong> uma regra de encaminhamento oculta é como começa a maioria das fraudes por e-mail corporativo. O invasor lê suas faturas e depois manda aos seus clientes novos dados de pagamento. Trocar a senha não a remove. <a href="/#contact">Fale com a gente</a> se quiser verificar seu e-mail.</div>
+<p class="cta"><a href="/#case">← Voltar para nosso trabalho</a></p>
+</section>
+
+</main>
+
+<footer><div class="wrap">© 2026 Twenty Nine Cyber LLC · Orlando, FL · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></div></footer>
+</body>
+</html>
